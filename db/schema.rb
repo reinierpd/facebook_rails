@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427174408) do
+ActiveRecord::Schema.define(version: 20160429180011) do
 
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
@@ -58,8 +58,12 @@ ActiveRecord::Schema.define(version: 20160427174408) do
     t.string   "name"
     t.integer  "imageable_id"
     t.string   "imageable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "content_file_name"
+    t.string   "content_content_type"
+    t.integer  "content_file_size"
+    t.datetime "content_updated_at"
   end
 
   add_index "pictures", ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
@@ -78,11 +82,21 @@ ActiveRecord::Schema.define(version: 20160427174408) do
     t.string   "education"
     t.string   "profession"
     t.text     "about_you"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "profile_img_file_name"
+    t.string   "profile_img_content_type"
+    t.integer  "profile_img_file_size"
+    t.datetime "profile_img_updated_at"
+    t.string   "poster_img_file_name"
+    t.string   "poster_img_content_type"
+    t.integer  "poster_img_file_size"
+    t.datetime "poster_img_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -95,7 +109,7 @@ ActiveRecord::Schema.define(version: 20160427174408) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

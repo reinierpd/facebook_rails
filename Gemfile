@@ -30,6 +30,9 @@ gem 'paperclip'
 gem 'devise'
 gem 'better_errors'
 gem 'yard'
+gem 'remotipart'
+gem "font-awesome-rails"
+gem 'country_select', github: 'stefanpenner/country_select'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

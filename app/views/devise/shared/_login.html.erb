@@ -1,0 +1,15 @@
+<%= form_for( :user, html: {id: 'login-form', class:'form-inline navbar-form'},
+              url: new_user_session_path ) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :email, :class=>'control-label' %>
+      <%= f.email_field :email, :class=>'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off", :class=>'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Sign up", :class=>'btn btn-primary' %>
+    </div>
+<% end %>

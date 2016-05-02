@@ -1,34 +1,20 @@
-<%= form_for @post, :html => { :class => "form-horizontal post" } do |f| %>
+<%= form_for Post.new, :url=>{controller:'posts', action: 'create'},
+             :method=>:post ,:remote=>true,
+             :html => { :class => "form-horizontal post", :multipart => true},
+              authenticity_token: true   do |f| %>
 
-  <% if @post.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
+  <%= f.hidden_field :user_id, :value=>current_user.id %>
   <div class="form-group">
-    <%= f.label :content, :class => 'control-label col-lg-2' %>
-    <div class="col-lg-10">
-      <%= f.text_area :content, :class => 'form-control' %>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
     </div>
-    <%=f.error_span(:content) %>
   </div>
-
   <div class="form-group">
-    <div class="col-lg-offset-2 col-lg-10">
+     <%= f.text_area :content, :class => 'form-control' %>
+  </div>
+  <div class="form-group">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                posts_path, :class => 'btn btn-default' %>
-    </div>
   </div>
 
 <% end %>

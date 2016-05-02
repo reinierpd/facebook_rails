@@ -1,0 +1,3 @@
+<%= liked = @user.likes?(@post) %>
+$('#<%= "like_#{@post.id}" %>').text("<%= liked ? 'Unlike' : 'Like' %>");
+$('#<%= "likes_count_#{@post.id}" %>').text('<%= j pluralize(@post.likers(User).count, 'Like', 'Likes') %>');

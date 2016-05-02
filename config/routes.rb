@@ -6,20 +6,30 @@ Rails.application.routes.draw do
   get 'profiles/update'
 
   resources :posts
+  post 'add_like_to_post/:id/:user_id' => "posts#add_like", :as => 'add_like_to_post'
   get 'user/index'
 
   get 'user/show'
 
   get 'home/index'
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'home#index'
+
+
+  resources :profiles, only: [:show, :edit, :update]
 
   devise_scope :user do
-    get '/sign-in' => "devise/sessions#new", :as => :login
+    root 'registrations#new'
+  end
+
+  as :user do
+
+    # delete 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    # get    'signup' => 'registrations#new'
+    get '/unused_email', to: 'registrations#unused_email'
   end
 
   # Example of regular route:

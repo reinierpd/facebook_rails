@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-image">
+    <% if post.image != nil %>
+        <%= image_tag post.image.content.url(:medium), :class => 'img-responsive' %>
+    <%end%>
+  </div>
+
+  <div class="card-content">
+    <p><%= post.content %></p>
+  </div>
+
+  <div class="card-action">
+    <p id="<%= "likes_count_#{post.id}" %>"><%= pluralize(post.likers(User).count, 'Like', 'Likes') %></p>
+    <% if user_signed_in? %>
+        <%= link_to current_user.likes?(post) ? 'Unlike':'Like', add_like_to_post_path(:id => post.id, :user_id => current_user.id), :id => "like_#{post.id}", :remote => true, :method => :post, :class => 'btn btn-default', :role => 'button' %>
+    <% end %>
+  </div>
+</div>

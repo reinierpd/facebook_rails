@@ -1,2 +1,9 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<h2>Profile image</h2>
+  <% if @profile.profile_img != nil %>
+      <%= image_tag @profile.profile_img.content.url(:medium), :class => 'img-responsive' %>
+  <%end%>
+
+<h2>Poster image</h2>
+<% if @profile.poster_img != nil %>
+    <%= image_tag @profile.poster_img.content.url(:medium), :class => 'img-responsive' %>
+<%end%>

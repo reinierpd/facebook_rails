@@ -1,1 +1,14 @@
-<%= render 'posts/form' %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= render 'posts/form' %>
+    <div id="feeds">
+      <% @posts.each do |post| %>
+          <%= render 'posts/post_element', :post=>post %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

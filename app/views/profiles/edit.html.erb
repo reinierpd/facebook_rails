@@ -1,2 +1,43 @@
-<h1>Profiles#edit</h1>
-<p>Find me in app/views/profiles/edit.html.erb</p>
+<h2>Edit profile</h2>
+<% if @profile.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@profile.errors.count, "error") %> prohibited this post from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @profile.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+<% end %>
+
+<%= form_for @profile, :html => { :class => "form-horizontal profile", :multipart=>true } do |f| %>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :profile_img, 'Profile image' %><br>
+        <%= f.file_field :profile_img %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="field">
+        <%= f.label :poster_img, 'Poster image'%><br>
+        <%= f.file_field :poster_img %>
+      </div>
+    </div>
+    <div class="form-group dates">
+      <%= f.label :birthday, :class=>'control-label' %>
+      <%= f.date_select :birthday,  user_short_month:true, prompt:true ,autofocus: true %>
+    </div>
+    <div class="form-group">
+      <%=  f.label :country %>
+      <%= f.country_select :country, priority_countries = ["US"], options = {}, html_options = {:class => "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+    </div>
+
+
+<% end %>

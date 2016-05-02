@@ -1,3 +1,4 @@
+@import "base/variables";
 body {
   background-color: #fff;
   color: #333;
@@ -27,7 +28,6 @@ a {
 
   &:hover {
     color: #fff;
-    background-color: #000;
   }
 }
 
@@ -71,3 +71,25 @@ div {
     list-style: square;
   }
 }
+
+.navbar.navbar-default{
+  background-color: $blue;
+  color: #ffffff;
+
+  a{
+    color: #ffffff;
+  }
+
+  .navbar-nav{
+    li{
+      a{
+        color: #ffffff;
+      }
+    }
+  }
+ .navbar-form{
+   margin-top:8px;
+ }
+}
+
+

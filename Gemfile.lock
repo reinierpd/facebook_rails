@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/stefanpenner/country_select.git
+  revision: 46548db15844f987b9ea0d248f9c27cf6db9dd8e
+  specs:
+    country_select (2.5.2)
+      countries (~> 1.2.0)
+      sort_alphabetical (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +68,10 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.1)
+    countries (1.2.5)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    currencies (0.4.2)
     debug_inspector (0.0.2)
     devise (4.0.1)
       bcrypt (~> 3.0)
@@ -69,9 +81,12 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    font-awesome-rails (4.5.0.1)
+      railties (>= 3.2, < 5.1)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    i18n_data (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -150,6 +165,7 @@ GEM
       polyamorous (~> 1.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    remotipart (1.2.1)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     sass (3.4.22)
@@ -164,6 +180,8 @@ GEM
       rdoc (~> 4.0)
     socialization (1.2.0)
       activerecord
+    sort_alphabetical (1.0.2)
+      unicode_utils (>= 1.2.2)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -185,6 +203,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
+    unicode_utils (1.4.0)
     warden (1.2.6)
       rack (>= 1.0)
     web-console (2.3.0)
@@ -201,13 +220,16 @@ DEPENDENCIES
   better_errors
   byebug
   coffee-rails (~> 4.1.0)
+  country_select!
   devise
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
   paperclip
   public_activity
   rails (= 4.2.6)
   ransack
+  remotipart
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   socialization
