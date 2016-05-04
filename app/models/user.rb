@@ -88,7 +88,7 @@ class User < ActiveRecord::Base
                 id NOT IN (#{requesteds_ids})", user_id: self.id)
   end
 
-  def post_feed
+  def post_feed(page)
     requester_friends_ids      = "SELECT requester_id FROM friendships
                                  WHERE requested_id = :user_id AND accepted = :accepted"
     requested_friends_ids      = "SELECT requested_id FROM friendships
@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
                                        user_id = :user_id"
 
     Post.where("id IN (#{friends_created_posts_id})", user_id: self.id, accepted:true)
-        .order('created_at DESC')
+        .paginate(:page => page, :per_page => 2).order('created_at DESC')
   end
 
   private

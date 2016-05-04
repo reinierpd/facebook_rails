@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   before_filter :authenticate_user!
   def index
-   @posts = current_user.post_feed
+   @posts = current_user.post_feed(params[:page])
   end
 
   def find_friends
