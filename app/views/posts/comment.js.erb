@@ -1,0 +1,2 @@
+$("#<%= "comments_#{@post.id}" %>").html('<%= j render 'posts/comments', :post => @post %>');
+$("#<%= "text_comment_#{@post.id}" %>").val('');

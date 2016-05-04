@@ -15,4 +15,22 @@
         <%= link_to current_user.likes?(post) ? 'Unlike':'Like', add_like_to_post_path(:id => post.id, :user_id => current_user.id), :id => "like_#{post.id}", :remote => true, :method => :post, :class => 'btn btn-default', :role => 'button' %>
     <% end %>
   </div>
+  <div class="card-comments">
+  <div id="<%= "comments_#{post.id}" %>">
+    <%= render 'posts/comments', :post=>post %>
+  </div>
+
+   <%= form_for Comment.new , :url=>comment_post_path(post),
+                :method=>:post ,:remote=>true do |f|  %>
+    <%= f.hidden_field :post_id, :value=>post.id %>
+
+    <div class="form-group">
+      <%= f.text_area :comment, :class=>'form-control', :placeholder=>'Make your comment', :id=>"text_comment_#{post.id}" %>
+    </div>
+     <div class="form-group">
+       <%= f.submit 'Send', :class => 'btn btn-primary' %>
+     </div>
+
+    <% end %>
+  </div>
 </div>

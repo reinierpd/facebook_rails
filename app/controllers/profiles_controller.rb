@@ -1,9 +1,10 @@
 class ProfilesController < ApplicationController
   before_action :authorize_self_profile, only:[:edit, :update]
+  before_action :set_profile, only: [:show]
   # before_action :authorize_public_profile, only: [:show]
 
   def show
-   @profile = current_user.profile
+    @friends = current_user.friends
   end
 
   def edit
@@ -12,16 +13,18 @@ class ProfilesController < ApplicationController
 
   def update
     new_profile_params = profile_params
-    if new_profile_params[:profile_img] != nil
-      new_profile_image = Picture.create({:content=> new_profile_params[:profile_img]})
-      new_profile_params[:profile_img]= new_profile_image
-    end
-    if new_profile_params[:poster_img] != nil
-      new_poster_image = Picture.create({:content=> new_profile_params[:poster_img]})
-      new_profile_params[:poster_img]= new_poster_image
-    end
-    @profile = Profile.find(params[:id])
 
+    if new_profile_params[:profile_img_id] != nil
+      new_profile_image = Picture.create({:content=> new_profile_params[:profile_img_id]})
+      new_profile_params[:profile_img_id]= new_profile_image.id
+    end
+    if new_profile_params[:poster_img_id] != nil
+      new_poster_image = Picture.create({:content=> new_profile_params[:poster_img_id]})
+      new_profile_params[:poster_img_id]= new_poster_image.id
+
+    end
+
+    @profile = Profile.find(params[:id])
     if @profile.update(new_profile_params)
       redirect_to @profile, notice: "Profile updated."
     else
@@ -30,6 +33,9 @@ class ProfilesController < ApplicationController
   end
 
   private
+  def set_profile
+    @profile = Profile.find(params[:id])
+  end
 
   def authorize_self_profile
     user= Profile.find(params[:id]).user
@@ -43,6 +49,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:avatar, :birthday, :country, :education, :profession, :about_you, :profile_img, :poster_img)
+    params.require(:profile).permit(:avatar, :birthday, :country, :education, :profession, :about_you, :profile_img_id, :poster_img_id)
   end
 end

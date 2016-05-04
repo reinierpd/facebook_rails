@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429180011) do
+ActiveRecord::Schema.define(version: 20160503204051) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "title",            limit: 50, default: ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.string   "role",                        default: "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "follows", force: :cascade do |t|
     t.string   "follower_type"
@@ -82,16 +97,10 @@ ActiveRecord::Schema.define(version: 20160429180011) do
     t.string   "education"
     t.string   "profession"
     t.text     "about_you"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.string   "profile_img_file_name"
-    t.string   "profile_img_content_type"
-    t.integer  "profile_img_file_size"
-    t.datetime "profile_img_updated_at"
-    t.string   "poster_img_file_name"
-    t.string   "poster_img_content_type"
-    t.integer  "poster_img_file_size"
-    t.datetime "poster_img_updated_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "poster_img_id"
+    t.integer  "profile_img_id"
   end
 
   create_table "users", force: :cascade do |t|

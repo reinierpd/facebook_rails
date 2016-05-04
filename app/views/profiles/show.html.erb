@@ -1,9 +1,62 @@
-<h2>Profile image</h2>
-  <% if @profile.profile_img != nil %>
-      <%= image_tag @profile.profile_img.content.url(:medium), :class => 'img-responsive' %>
+<div class="wall-section">
+  <% if @profile.poster_img != nil %>
+      <%= image_tag @profile.poster_img.content.url(:medium) , :class=>'poster-img'%>
   <%end%>
+  <div class="thumb profile-img-container">
+    <% if @profile.profile_img != nil %>
+        <%= image_tag @profile.profile_img.content.url(:medium), :class => 'portrait' %>
+    <%end%>
+  </div>
+  <div class="user-name"><%= @profile.user.first_name.titleize + " " + @profile.user.last_name.titleize  %></div>
+</div>
 
-<h2>Poster image</h2>
-<% if @profile.poster_img != nil %>
-    <%= image_tag @profile.poster_img.content.url(:medium), :class => 'img-responsive' %>
-<%end%>
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-title upper-text">Information</div>
+      <div class="card-content">
+        <p><strong>From:</strong> <%= @profile.country_name%></p>
+        <p><strong>Gender:</strong> <%= @profile.user.gender%></p>
+        <p><strong>Age:</strong> <%= @profile.age%></p>
+      </div>
+    </div>
+    <div class="card ">
+      <div class="card-title upper-text">Friends</div>
+      <div class="card-content ">
+        <% if @friends.any? %>
+            <% @friends.each do |friend| %>
+                <div class="media">
+                  <div class="media-left ">
+                    <% if friend.profile.profile_img != nil %>
+                      <div class="thumb small">
+                        <%= image_tag friend.profile.profile_img.content.url(:thumb) %>
+                      </div>
+
+                    <%end%>
+
+                  </div>
+                  <div class="media-body">
+                    <p class="media-heading">
+                      <%= link_to profile_path(friend.profile) do %>
+                          <%= friend.first_name.titleize + " " + friend.last_name.titleize  %>
+                      <% end %>
+                    </p>
+                  </div>
+                </div>
+            <% end %>
+        <% else %>
+
+            <p>No friends founded..</p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <% @profile.user.posts.each  do |post| %>
+        <%= render 'posts/post_element', :post=>post %>
+    <% end %>
+  </div>
+
+</div>
+

@@ -74,6 +74,20 @@ class PostsController < ApplicationController
       format.js
     end
   end
+
+  def comment
+    @post = Post.find(params[:post_id])
+    comment = @post.comments.create
+    comment.comment = params[:comment][:comment]
+    comment.user = current_user
+    comment.save
+    #byebug
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

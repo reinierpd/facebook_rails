@@ -33,6 +33,7 @@ gem 'yard'
 gem 'remotipart'
 gem "font-awesome-rails"
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'acts_as_commentable'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

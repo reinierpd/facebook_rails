@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'profiles/show'
+  get 'profiles/:id/show'=>"profiles#show", :as=>'show_profile'
 
   get 'profiles/edit'
 
@@ -12,15 +12,16 @@ Rails.application.routes.draw do
   get 'user/show'
 
   get 'home/index'
+  get 'find_friends'=>"home#find_friends", :as=> 'find_friends'
   devise_for :users, controllers: {registrations: "registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
-
+  post 'comment/:post_id' => 'posts#comment', :as => 'comment_post'
   resources :profiles, only: [:show, :edit, :update]
-
+  resources :friendships, only:[:create, :update, :destroy]
   devise_scope :user do
     root 'registrations#new'
   end

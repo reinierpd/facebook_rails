@@ -1,0 +1,23 @@
+<div class="comments">
+  Comments (<%= post.comments.count %>):
+  <% post.comments.each do |comment| %>
+      <div class="media comment">
+        <div class="media-left">
+
+          <% if comment.user.profile.profile_img != nil %>
+              <%= image_tag comment.user.profile.profile_img.content.url(:thumb) %>
+          <%end%>
+
+        </div>
+        <div class="media-body">
+          <h5 class="media-heading">
+            <%= link_to profile_path(comment.user.profile) do %>
+                <%= "#{comment.user.first_name} #{comment.user.last_name}" %>
+            <% end %>
+          </h5>
+          <p><%= comment.comment %></p>
+        </div>
+      </div>
+  <% end %>
+</div>
+

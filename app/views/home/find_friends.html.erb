@@ -1,0 +1,58 @@
+<h3>Friend requests</h3>
+<% if @friend_requests.any? %>
+    <% @friend_requests.each do |user| %>
+        <div class="media">
+          <div class="media-left">
+
+            <% if user.profile.profile_img != nil %>
+                <%= image_tag user.profile.profile_img.content.url(:thumb) %>
+            <%end%>
+
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <%= link_to profile_path(user.profile) do %>
+                  <%= user.first_name.titleize + " " + user.last_name.titleize  %>
+              <% end %>
+            </h4>
+            <div class="pull-left">
+              <%= link_to 'Add to friends', friendship_path(user) ,:method=>'patch' , :class => 'btn btn-primary' %>
+            </div>
+            <div class="pull-left margin-left-10">
+              <%= link_to 'Delete request', friendship_path(user) ,:method=>'delete' , :class => 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+    <%end %>
+<% else %>
+    <p> No friend request...</p>
+<% end %>
+<h3>Search friends</h3>
+<% if @no_friends.any? %>
+    <% @no_friends.each do |user| %>
+        <div class="media">
+          <div class="media-left">
+
+            <% if user.profile.profile_img != nil %>
+                <%= image_tag user.profile.profile_img.content.url(:thumb) %>
+            <%end%>
+
+          </div>
+          <div class="media-body">
+            <h4 class="media-heading">
+              <%= link_to profile_path(user.profile) do %>
+                  <%= user.first_name.titleize + " " + user.last_name.titleize  %>
+              <% end %>
+             </h4>
+            <%= form_for Friendship.new, :url=>{controller:'friendships', action: 'create'},
+                         :method=>:post ,
+                         :html => { :class => "form-horizontal post", :id=>"requester_form_#{user.id}"} do |f| %>
+                <%= f.hidden_field :requested_id, :value => user.id  %>
+                <%= f.submit 'Send request', :class => 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+    <%end  %>
+<% else %>
+    <p> No people to know...</p>
+<% end %>
