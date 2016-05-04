@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authorize_self_profile, only:[:edit, :update]
-  before_action :set_profile, only: [:show]
+  before_action :set_profile, only: [:show, :update]
   # before_action :authorize_public_profile, only: [:show]
 
   def show
@@ -24,7 +24,6 @@ class ProfilesController < ApplicationController
 
     end
 
-    @profile = Profile.find(params[:id])
     if @profile.update(new_profile_params)
       redirect_to @profile, notice: "Profile updated."
     else
@@ -34,13 +33,14 @@ class ProfilesController < ApplicationController
 
   private
   def set_profile
-    @profile = Profile.find(params[:id])
+    @profile = User.friendly.find(params[:id]).profile
   end
 
   def authorize_self_profile
-    user= Profile.find(params[:id]).user
-    msg = "You can change only your profile"
-     #authorize_user!(user,:self,msg)
+    user= User.friendly.find(params[:id])
+    if user.id != current_user.id
+     redirect_to root_path , :notice => "You can change only your profile"
+    end
   end
 
   def authorize_public_profile

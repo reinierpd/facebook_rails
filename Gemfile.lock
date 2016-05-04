@@ -84,6 +84,8 @@ GEM
     execjs (2.6.0)
     font-awesome-rails (4.5.0.1)
       railties (>= 3.2, < 5.1)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -226,6 +228,7 @@ DEPENDENCIES
   country_select!
   devise
   font-awesome-rails
+  friendly_id (~> 5.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   paperclip

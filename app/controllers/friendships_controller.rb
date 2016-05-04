@@ -26,7 +26,7 @@ class FriendshipsController < ApplicationController
 
   private
   def set_user
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
   def friendship_params
     params.require(:friendship).permit(:requester_id, :requested_id)

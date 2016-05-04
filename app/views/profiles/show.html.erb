@@ -2,17 +2,20 @@
   <% if @profile.poster_img != nil %>
       <%= image_tag @profile.poster_img.content.url(:medium) , :class=>'poster-img'%>
   <%end%>
-  <div class="thumb profile-img-container">
-    <% if @profile.profile_img != nil %>
-        <%= image_tag @profile.profile_img.content.url(:medium), :class => 'portrait' %>
-    <%end%>
+  <div class="profile-img-container">
+    <div class="thumb">
+      <% if @profile.profile_img != nil %>
+          <%= image_tag @profile.profile_img.content.url(:medium) %>
+      <%end%>
+    </div>
+
   </div>
-  <div class="user-name"><%= @profile.user.first_name.titleize + " " + @profile.user.last_name.titleize  %></div>
+  <div class="user-name"><%= @profile.user.full_name  %></div>
 </div>
 
 <div class="row">
   <div class="col-md-4">
-    <div class="card">
+   <div class="card">
       <div class="card-title upper-text">Information</div>
       <div class="card-content">
         <p><strong>From: </strong> <%= @profile.country_name%></p>
@@ -37,8 +40,8 @@
                   </div>
                   <div class="media-body">
                     <p class="media-heading">
-                      <%= link_to profile_path(friend.profile) do %>
-                          <%= friend.first_name.titleize + " " + friend.last_name.titleize  %>
+                      <%= link_to profile_path(friend) do %>
+                          <%= friend.full_name  %>
                       <% end %>
                     </p>
                   </div>

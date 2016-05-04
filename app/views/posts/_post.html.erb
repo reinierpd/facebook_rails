@@ -1,4 +1,13 @@
-<div class="card">
+<div class="card post">
+  <div class="card-title ">
+    <div class=" title-img">
+      <%= image_tag post.user.profile.profile_img.content.url(:thumb)%>
+    </div>
+    <div class="title-content">
+      <%= link_to post.user.full_name , profile_path(post.user) %>
+    </div>
+
+  </div>
   <div class="card-image">
     <% if post.image != nil %>
         <%= image_tag post.image.content.url(:medium), :class => 'img-responsive' %>

@@ -14,6 +14,7 @@
   -webkit-box-shadow: 0px 0px 2px #a8a8a8;/*Saf3-4, Chrome, iOS 4.0.2-4.2, Android 2.3+*/
   box-shadow: 0px 0px 2px #a8a8a8;/* FF3.5+, Opera 9+, Saf1+, Chrome, IE10 */
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=90, Color=#a8a8a8); /*IE 5.5-7*/
+  padding: 10px;
 
 
   .card-title{
@@ -30,12 +31,6 @@
       position: relative;
       z-index: -1;
     }
-    span.card-title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 16px;
-    }
   }
 
   .card-content {
@@ -49,9 +44,6 @@
       color: inherit;
     }
 
-    span.card-title {
-      line-height: 48px;
-    }
   }
   .card-action {
     border-top: 1px solid rgba(160, 160, 160, 0.2);
@@ -67,6 +59,28 @@
         color: darken($blue, 20%);
         text-decoration: none;
       }
+    }
+  }
+  &.post{
+   .card-title{
+      .title-img{
+       display: table-cell;
+
+        img{
+          width: 40px;
+          height: 40px;
+        }
+      }
+     .title-content{
+       display: table-cell;
+       padding-left: 14px;
+       vertical-align: top;
+       a{
+         color: #164db7;
+         font-size: 16px;
+       }
+     }
+
     }
   }
 }

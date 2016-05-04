@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   # validates :name, presence: true
+  attr_accessor :full_name
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
   has_many :posts
   has_one :profile , dependent: :destroy
   has_many :friendships, dependent: :destroy, foreign_key: :requester_id
@@ -23,9 +26,13 @@ class User < ActiveRecord::Base
   acts_as_liker
 
 
-  # send friend request to another user.
+
+
 
   # Instance methods
+  def full_name
+    "#{first_name} #{last_name}"
+  end
   def send_friend_request_to(other_user)
     unless self == other_user || friends_with?(other_user) ||
         has_friend_request_from?(other_user) ||

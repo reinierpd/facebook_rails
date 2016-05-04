@@ -35,6 +35,7 @@ gem "font-awesome-rails"
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'acts_as_commentable'
 gem 'will_paginate', '~> 3.1.0'
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

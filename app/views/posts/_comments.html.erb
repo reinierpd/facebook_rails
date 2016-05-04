@@ -11,8 +11,8 @@
         </div>
         <div class="media-body">
           <h5 class="media-heading">
-            <%= link_to profile_path(comment.user.profile) do %>
-                <%= "#{comment.user.first_name} #{comment.user.last_name}" %>
+            <%= link_to profile_path(comment.user) do %>
+                <%= comment.user.full_name %>
             <% end %>
           </h5>
           <p><%= comment.comment %></p>

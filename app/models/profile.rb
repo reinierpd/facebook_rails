@@ -5,7 +5,7 @@ class Profile < ActiveRecord::Base
   belongs_to :poster_img, :class_name => 'Picture', :foreign_key => 'poster_img_id'
   belongs_to :user
   acts_as_liker
-
+  delegate :full_name, to: :user
   def age
     now = Date.today
     res = self.birthday != nil ? (now.year - self.birthday.year - (now.strftime('%m%d') < self.birthday.strftime('%m%d') ? 1 : 0)):'unknown'
@@ -14,4 +14,5 @@ class Profile < ActiveRecord::Base
     country = ISO3166::Country[self.country]
     country.translations[I18n.locale.to_s] || country.name
   end
+
 end
