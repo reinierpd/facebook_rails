@@ -38,6 +38,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'rails-timeago', '~> 2.0'
 gem 'pg'
+gem 'rails_12factor', group: :production
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
