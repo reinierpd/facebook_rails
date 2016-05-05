@@ -154,6 +154,9 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-timeago (2.13.0)
+      actionpack (>= 3.1)
+      activesupport (>= 3.1)
     railties (4.2.6)
       actionpack (= 4.2.6)
       activesupport (= 4.2.6)
@@ -234,6 +237,7 @@ DEPENDENCIES
   paperclip
   public_activity
   rails (= 4.2.6)
+  rails-timeago (~> 2.0)
   ransack
   remotipart
   sass-rails (~> 5.0)

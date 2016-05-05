@@ -4,7 +4,8 @@
       <%= image_tag post.user.profile.profile_img.content.url(:thumb)%>
     </div>
     <div class="title-content">
-      <%= link_to post.user.full_name , profile_path(post.user) %>
+     <div> <%= link_to post.user.full_name , profile_path(post.user) %></div>
+      <div class="time-ago"><%= time_ago_in_words(post.created_at) %></div>
     </div>
 
   </div>

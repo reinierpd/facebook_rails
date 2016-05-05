@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -36,6 +36,8 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'acts_as_commentable'
 gem 'will_paginate', '~> 3.1.0'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'rails-timeago', '~> 2.0'
+gem 'pg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
